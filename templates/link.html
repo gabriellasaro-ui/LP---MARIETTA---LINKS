@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marietta — Unidades, Cardápio e Delivery | Encontre a unidade mais perto de você</title>
+<meta name="description" content="Marietta: sabor, praticidade e momentos que combinam com você. Veja o cardápio, a localização e peça no iFood nas unidades Marietta Cafés e Marietta Fasts em Brasília.">
+
+<meta property="og:title" content="Marietta — Unidades, Cardápio e Delivery">
+<meta property="og:description" content="Encontre uma unidade Marietta perto de você: cardápio, localização e delivery em um só lugar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#A7401E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<script src="{{ url_for('static', filename='tracking.js') }}" defer></script>
+
+<style>
+:root{
+  --terracota:#A7401E;
+  --oliva:#51562D;
+  --creme:#F2E6D6;
+  --carvao:#161614;
+  --mostarda:#DA9413;
+  --creme-claro:#FBF5EC;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius:18px;
+  --shadow:0 18px 40px -24px rgba(22,22,20,.55);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--carvao);
+  background:var(--creme);
+  background-image:
+    radial-gradient(1100px 520px at 50% -220px, rgba(167,64,30,.16), transparent 70%),
+    radial-gradient(900px 480px at 50% 105%, rgba(81,86,45,.14), transparent 70%);
+  background-attachment:fixed;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+.wrap{
+  width:100%;
+  max-width:680px;
+  margin:0 auto;
+  padding:0 18px;
+}
+
+/* ---------- Topo ---------- */
+.topbar{
+  padding-block:34px 6px;
+  text-align:center;
+}
+.brand{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.brand-logo{
+  width:clamp(180px,52vw,260px);
+  height:auto;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  text-align:center;
+  padding-block:26px 12px;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(29px,7.4vw,44px);
+  line-height:1.12;
+  margin:0 0 16px;
+  color:var(--terracota);
+  letter-spacing:-.01em;
+}
+.hero h1 em{
+  font-style:italic;
+  color:var(--oliva);
+}
+.hero .lead{
+  font-size:clamp(16px,4.2vw,18px);
+  font-weight:600;
+  margin:0 0 14px;
+  color:var(--carvao);
+}
+.hero p.body{
+  font-size:15px;
+  font-weight:400;
+  margin:0 auto;
+  max-width:56ch;
+  color:rgba(22,22,20,.78);
+}
+
+.units-cue{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:34px 0 6px;
+}
+.units-cue::before,
+.units-cue::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:rgba(167,64,30,.3);
+}
+.units-cue span{
+  font-size:11px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--terracota);
+  white-space:nowrap;
+}
+
+/* ---------- Divisor de categoria ---------- */
+.cat{
+  margin:46px 0 22px;
+  text-align:center;
+}
+.cat h2{
+  margin:0;
+  font-family:var(--display);
+  font-size:clamp(34px,9vw,48px);
+  font-style:italic;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:-.01em;
+  color:var(--terracota);
+}
+.cat.olive h2{color:var(--oliva)}
+.cat h2::after{
+  content:"";
+  display:block;
+  width:52px;
+  height:3px;
+  margin:12px auto 0;
+  border-radius:2px;
+  background:var(--mostarda);
+}
+
+/* ---------- Card de unidade ---------- */
+.unit{
+  --card:var(--terracota);
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:20px;
+  display:grid;
+  grid-template-columns:1fr;
+}
+.unit.olive{--card:var(--oliva)}
+
+.unit-photo{
+  margin:0;
+  position:relative;
+  background:var(--carvao);
+  aspect-ratio:16/10;
+}
+.unit-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.unit-body{
+  padding:20px 18px 22px;
+  color:var(--creme-claro);
+}
+.unit-kicker{
+  font-size:10px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--mostarda);
+  margin:0 0 4px;
+}
+.unit-name{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(24px,6.2vw,30px);
+  line-height:1.06;
+  margin:0 0 4px;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+}
+.unit-place{
+  margin:0 0 16px;
+  font-size:13px;
+  font-weight:500;
+  color:rgba(251,245,236,.72);
+}
+
+.btn-stack{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  width:100%;
+  padding:13px 18px;
+  border-radius:999px;
+  border:0;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  background:var(--mostarda);
+  color:var(--carvao);
+  transition:transform .16s ease, filter .16s ease, background .16s ease;
+}
+.btn .arrow{font-size:15px;line-height:1;opacity:.75}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:3px solid var(--creme-claro);outline-offset:2px}
+
+.btn.ghost{
+  background:transparent;
+  color:var(--creme-claro);
+  box-shadow:inset 0 0 0 1.5px rgba(251,245,236,.55);
+}
+.btn.ghost:hover{background:rgba(251,245,236,.12)}
+
+.btn.soon{
+  background:transparent;
+  color:rgba(251,245,236,.5);
+  box-shadow:inset 0 0 0 1.5px rgba(251,245,236,.22);
+  cursor:not-allowed;
+  pointer-events:none;
+}
+.btn.soon .arrow{opacity:.4}
+
+/* ---------- Fechamento ---------- */
+.closing{
+  margin:44px 0 0;
+  background:var(--creme-claro);
+  border:1px solid rgba(167,64,30,.22);
+  border-radius:var(--radius);
+  padding:30px 22px 28px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.closing h2{
+  font-family:var(--display);
+  font-size:clamp(24px,6vw,32px);
+  line-height:1.14;
+  margin:0 0 12px;
+  color:var(--terracota);
+  font-weight:700;
+}
+.closing p{
+  margin:0 auto 18px;
+  max-width:50ch;
+  font-size:15px;
+  color:rgba(22,22,20,.78);
+}
+.closing .app-note{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--oliva);
+  margin-bottom:14px;
+}
+.app-stack{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-width:340px;
+  margin:0 auto;
+}
+.app-stack .btn{
+  background:var(--carvao);
+  color:var(--creme-claro);
+}
+.app-stack .btn.soon{
+  background:transparent;
+  color:rgba(22,22,20,.42);
+  box-shadow:inset 0 0 0 1.5px rgba(22,22,20,.2);
+}
+
+.footer{
+  text-align:center;
+  padding-block:30px 40px;
+  font-size:11px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:rgba(22,22,20,.45);
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width:620px){
+  .unit{
+    grid-template-columns:1fr 1fr;
+    align-items:stretch;
+  }
+  .unit .unit-photo{grid-column:1;grid-row:1}
+  .unit .unit-body{grid-column:2;grid-row:1;padding:24px 22px}
+  .unit.flip .unit-photo{grid-column:2}
+  .unit.flip .unit-body{grid-column:1}
+  .unit-photo{aspect-ratio:auto}
+  .unit-photo img{min-height:100%}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <header class="topbar">
+    <a class="brand" href="/links" aria-label="Marietta — página inicial">
+      <img class="brand-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Marietta — desde 1982" fetchpriority="high" decoding="async">
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1>Marietta: sabor, praticidade e <em>momentos que combinam com você.</em></h1>
+    <p class="lead">Encontre uma unidade perto de você e aproveite uma experiência completa.</p>
+    <p class="body">Na Marietta, cada detalhe é pensado para deixar seu dia mais leve: refeições saborosas, ingredientes selecionados e aquele atendimento que faz você se sentir em casa.</p>
+
+    <div class="units-cue"><span>Conheça nossas unidades</span></div>
+  </section>
+
+  <main>
+
+    <!-- ================= CAFÉS ================= -->
+    <div class="cat">
+      <h2>Cafés</h2>
+    </div>
+
+    <article class="unit">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/terraco.webp') }}" alt="Fachada da unidade Marietta Terraço" fetchpriority="high" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Terraço</h3>
+        <p class="unit-place">Marietta Cafés</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Terraço" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/hGk3qbQZkz4goKNM7" target="_blank" rel="noopener" data-unit="Terraço" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit flip">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/park-shopping.webp') }}" alt="Fachada da unidade Marietta Park Shopping" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Park Shopping</h3>
+        <p class="unit-place">Marietta Cafés</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/hv7ejPd5RbYhppbN6" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/casa-park.webp') }}" alt="Fachada da unidade Marietta Casa Park" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Casa Park</h3>
+        <p class="unit-place">Marietta Cafés</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Casa Park" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/f35QTqLSKhQSBMTo9" target="_blank" rel="noopener" data-unit="Casa Park" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= FASTS ================= -->
+    <div class="cat olive">
+      <h2>Fasts</h2>
+    </div>
+
+    <article class="unit olive flip">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/iguatemi.webp') }}" alt="Balcão da unidade Marietta Iguatemi" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Iguatemi</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/BaqoEsfTtR6oHpRc7" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit olive">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/plaza-norte.webp') }}" alt="Balcão da unidade Marietta Plaza Norte" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Plaza Norte</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/MsJVeXCg7ENVf8vY7" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit olive flip">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/brasilia-shopping.webp') }}" alt="Balcão da unidade Marietta Brasília Shopping" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Brasília Shopping</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/fpvUnk5Vne4UnHxr9" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://www.ifood.com.br/delivery/brasilia-df/marietta---brasilia-shopping-asa-norte/958d3656-5fb6-49e6-ac2e-b400e4b728de" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="ifood">Peça no iFood <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit olive">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/conjunto-nacional.webp') }}" alt="Balcão da unidade Marietta Conjunto Nacional" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Conjunto Nacional</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/r75VvnYbw4Fc9fVC7" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit olive flip">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/lago-sul.webp') }}" alt="Balcão da unidade Marietta Lago Sul" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Lago Sul</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/MdURafgsZWRXRiC5A" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit olive">
+      <figure class="unit-photo">
+        <img src="{{ url_for('static', filename='img/opt/taguatinga.webp') }}" alt="Balcão da unidade Marietta Taguatinga" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name">Taguatinga</h3>
+        <p class="unit-place">Marietta Fasts</p>
+        <div class="btn-stack">
+          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://maps.app.goo.gl/LePx7N7fMfrxRxQ9A" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="btn soon" role="link" aria-disabled="true">iFood <span class="arrow" aria-hidden="true">em breve</span></span>
+        </div>
+      </div>
+    </article>
+
+    <section class="closing">
+      <h2>Muito mais que uma refeição. Uma experiência Marietta.</h2>
+      <p>Do primeiro pedido ao próximo encontro, estamos perto de você para transformar cada momento em uma experiência ainda mais saborosa.</p>
+      <p class="app-note">Baixe o app e aproveite benefícios exclusivos</p>
+      <div class="app-stack">
+        <span class="btn soon" role="link" aria-disabled="true">Baixar para Android <span class="arrow" aria-hidden="true">em breve</span></span>
+        <span class="btn soon" role="link" aria-disabled="true">Baixar para iOS <span class="arrow" aria-hidden="true">em breve</span></span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Marietta · Desde 1982 · Cafés &amp; Fasts · Brasília — DF
+  </footer>
+
+</div>
+
+<script>
+document.addEventListener("click", function (e) {
+  var el = e.target.closest("a.btn[data-action]");
+  if (!el) return;
+  if (typeof trackCTA === "function") {
+    trackCTA(el.dataset.action, el.dataset.unit);
+  }
+});
+</script>
+
+</body>
+</html>
