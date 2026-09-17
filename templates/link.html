@@ -5,32 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Marietta — Unidades, Cardápio e Delivery | Encontre a unidade mais perto de você</title>
-<meta name="description" content="Marietta: sabor, praticidade e momentos que combinam com você. Veja o cardápio, a localização e peça no iFood nas unidades Marietta Cafés e Marietta Fasts em Brasília.">
+<meta name="description" content="Marietta: sabor, praticidade e momentos que combinam com você. Veja o cardápio, a localização e peça no iFood nas unidades Marietta em Brasília. Comida de verdade desde 1982.">
 
 <meta property="og:title" content="Marietta — Unidades, Cardápio e Delivery">
 <meta property="og:description" content="Encontre uma unidade Marietta perto de você: cardápio, localização e delivery em um só lugar.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta name="theme-color" content="#A7401E">
+<meta name="theme-color" content="#415C49">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="{{ url_for('static', filename='tracking.js') }}" defer></script>
 
 <style>
 :root{
-  --terracota:#A7401E;
-  --oliva:#51562D;
-  --creme:#F2E6D6;
-  --carvao:#161614;
-  --mostarda:#DA9413;
-  --creme-claro:#FBF5EC;
-  --display:"Playfair Display", Georgia, "Times New Roman", serif;
-  --sans:"Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --radius:18px;
-  --shadow:0 18px 40px -24px rgba(22,22,20,.55);
+  /* Paleta Marietta */
+  --verde:#415C49;        /* verde da logo */
+  --floresta:#2A4132;     /* verde profundo — títulos */
+  --folha:#6B8F6A;        /* verde claro — grafismos */
+  --creme:#F7F1E5;        /* fundo principal */
+  --creme-claro:#FDFCF8;
+  --areia:#E7D4BB;        /* bordas e detalhes */
+  --madeira:#5B422A;      /* cards Fasts */
+  --laranja:#E06A10;      /* CTA de destaque */
+  --tinta:#141D16;        /* texto */
+  --display:"Fraunces", "Noe Display", Georgia, "Times New Roman", serif;
+  --sans:"Hanken Grotesk", "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius:20px;
+  --shadow:0 22px 44px -26px rgba(20,29,22,.5);
 }
 
 *{box-sizing:border-box}
@@ -38,19 +42,43 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;
   font-family:var(--sans);
-  color:var(--carvao);
-  background:var(--creme);
+  color:var(--tinta);
+  background-color:var(--creme);
+  /* padrão botânico sutil, repetido */
   background-image:
-    radial-gradient(1100px 520px at 50% -220px, rgba(167,64,30,.16), transparent 70%),
-    radial-gradient(900px 480px at 50% 105%, rgba(81,86,45,.14), transparent 70%);
-  background-attachment:fixed;
+    radial-gradient(900px 480px at 50% -200px, rgba(65,92,73,.16), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23415C49' stroke-width='1.1' stroke-linecap='round' opacity='.11'%3E%3Cpath d='M30 120c8-26 24-42 52-50'/%3E%3Cpath d='M48 92c-10-3-17-11-18-22 10 2 17 9 18 22Z'/%3E%3Cpath d='M64 78c-4-10-1-20 7-27 4 10 1 20-7 27Z'/%3E%3Cpath d='M112 40c26 8 42 24 50 52'/%3E%3Cpath d='M140 58c3-10 11-17 22-18-2 10-9 17-22 18Z'/%3E%3Cpath d='M154 74c10-4 20-1 27 7-10 4-20 1-27-7Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment:fixed, fixed;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
 
+/* ---------- Ramos de folhas (grafismo de fundo) ---------- */
+.deco{
+  position:fixed;
+  z-index:0;
+  pointer-events:none;
+  color:var(--folha);
+  opacity:.34;
+  width:clamp(150px,34vw,340px);
+  height:auto;
+}
+.deco-a{top:-30px;left:-60px;transform:rotate(-8deg)}
+.deco-b{top:38%;right:-80px;transform:scaleX(-1) rotate(12deg)}
+.deco-c{bottom:-60px;left:-40px;transform:rotate(28deg)}
+@media (min-width:900px){
+  .deco{opacity:.4}
+  .deco-a{left:2vw}
+  .deco-b{right:3vw}
+  .deco-c{left:4vw}
+}
+
 .wrap{
+  position:relative;
+  z-index:1;
   width:100%;
   max-width:680px;
   margin:0 auto;
@@ -59,74 +87,78 @@ a{color:inherit}
 
 /* ---------- Topo ---------- */
 .topbar{
-  padding-block:34px 6px;
+  padding-block:36px 4px;
   text-align:center;
 }
 .brand{
   display:inline-flex;
   flex-direction:column;
   align-items:center;
-  gap:12px;
   text-decoration:none;
 }
 .brand-logo{
-  width:clamp(180px,52vw,260px);
+  width:clamp(190px,54vw,270px);
   height:auto;
 }
 
 /* ---------- Hero ---------- */
 .hero{
   text-align:center;
-  padding-block:26px 12px;
+  padding-block:28px 12px;
 }
 .hero h1{
   font-family:var(--display);
-  font-weight:700;
-  font-size:clamp(29px,7.4vw,44px);
-  line-height:1.12;
+  font-weight:600;
+  font-size:clamp(30px,7.6vw,46px);
+  line-height:1.1;
   margin:0 0 16px;
-  color:var(--terracota);
-  letter-spacing:-.01em;
+  color:var(--floresta);
+  letter-spacing:-.015em;
 }
 .hero h1 em{
   font-style:italic;
-  color:var(--oliva);
+  font-weight:500;
+  color:var(--verde);
 }
 .hero .lead{
   font-size:clamp(16px,4.2vw,18px);
   font-weight:600;
   margin:0 0 14px;
-  color:var(--carvao);
+  color:var(--tinta);
 }
 .hero p.body{
-  font-size:15px;
+  font-size:15.5px;
   font-weight:400;
   margin:0 auto;
-  max-width:56ch;
-  color:rgba(22,22,20,.78);
+  max-width:54ch;
+  color:rgba(20,29,22,.78);
 }
 
 .units-cue{
   display:flex;
   align-items:center;
   gap:14px;
-  margin:34px 0 6px;
+  margin:36px 0 6px;
 }
 .units-cue::before,
 .units-cue::after{
   content:"";
   height:1px;
   flex:1;
-  background:rgba(167,64,30,.3);
+  background:rgba(65,92,73,.3);
 }
 .units-cue span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   font-size:11px;
   letter-spacing:.3em;
   text-transform:uppercase;
   font-weight:700;
-  color:var(--terracota);
+  color:var(--verde);
   white-space:nowrap;
 }
+.units-cue svg{width:16px;height:16px;flex:none}
 
 /* ---------- Divisor de categoria ---------- */
 .cat{
@@ -136,14 +168,14 @@ a{color:inherit}
 .cat h2{
   margin:0;
   font-family:var(--display);
-  font-size:clamp(34px,9vw,48px);
+  font-size:clamp(36px,9vw,50px);
   font-style:italic;
-  font-weight:600;
+  font-weight:500;
   line-height:1;
   letter-spacing:-.01em;
-  color:var(--terracota);
+  color:var(--floresta);
 }
-.cat.olive h2{color:var(--oliva)}
+.cat.wood h2{color:var(--madeira)}
 .cat h2::after{
   content:"";
   display:block;
@@ -151,12 +183,12 @@ a{color:inherit}
   height:3px;
   margin:12px auto 0;
   border-radius:2px;
-  background:var(--mostarda);
+  background:var(--laranja);
 }
 
 /* ---------- Card de unidade ---------- */
 .unit{
-  --card:var(--terracota);
+  --card:var(--verde);
   background:var(--card);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
@@ -164,13 +196,26 @@ a{color:inherit}
   margin-bottom:20px;
   display:grid;
   grid-template-columns:1fr;
+  position:relative;
 }
-.unit.olive{--card:var(--oliva)}
+.unit.wood{--card:var(--madeira)}
+/* folha marca-d'água no canto do card */
+.unit::after{
+  content:"";
+  position:absolute;
+  right:-26px;
+  bottom:-30px;
+  width:150px;
+  height:150px;
+  pointer-events:none;
+  opacity:.12;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23FDFCF8' d='M12 88C18 46 44 18 92 10 88 58 60 84 12 88Z'/%3E%3Cpath fill='none' stroke='%23415C49' stroke-width='2' stroke-linecap='round' d='M18 82 82 18'/%3E%3C/svg%3E") no-repeat center/contain;
+}
 
 .unit-photo{
   margin:0;
   position:relative;
-  background:var(--carvao);
+  background:var(--floresta);
   aspect-ratio:16/10;
 }
 .unit-photo img{
@@ -180,31 +225,33 @@ a{color:inherit}
 }
 
 .unit-body{
+  position:relative;
+  z-index:1;
   padding:20px 18px 22px;
-  color:var(--creme-claro);
+  color:var(--creme);
 }
 .unit-kicker{
   font-size:10px;
   letter-spacing:.34em;
   text-transform:uppercase;
   font-weight:700;
-  color:var(--mostarda);
+  color:var(--areia);
   margin:0 0 4px;
 }
 .unit-name{
   font-family:var(--display);
-  font-weight:700;
-  font-size:clamp(24px,6.2vw,30px);
+  font-weight:600;
+  font-size:clamp(25px,6.4vw,31px);
   line-height:1.06;
   margin:0 0 4px;
-  text-transform:uppercase;
-  letter-spacing:.01em;
+  letter-spacing:-.01em;
+  color:var(--creme-claro);
 }
 .unit-place{
   margin:0 0 16px;
   font-size:13px;
   font-weight:500;
-  color:rgba(251,245,236,.72);
+  color:rgba(247,241,229,.72);
 }
 
 .btn-stack{
@@ -228,61 +275,89 @@ a{color:inherit}
   text-transform:uppercase;
   text-decoration:none;
   cursor:pointer;
-  background:var(--mostarda);
-  color:var(--carvao);
+  background:var(--creme);
+  color:var(--floresta);
   transition:transform .16s ease, filter .16s ease, background .16s ease;
 }
 .btn .arrow{font-size:15px;line-height:1;opacity:.75}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
 .btn:active{transform:translateY(0)}
 .btn:focus-visible{outline:3px solid var(--creme-claro);outline-offset:2px}
 
 .btn.ghost{
   background:transparent;
-  color:var(--creme-claro);
-  box-shadow:inset 0 0 0 1.5px rgba(251,245,236,.55);
+  color:var(--creme);
+  box-shadow:inset 0 0 0 1.5px rgba(247,241,229,.55);
 }
-.btn.ghost:hover{background:rgba(251,245,236,.12)}
+.btn.ghost:hover{background:rgba(247,241,229,.12)}
+
+.btn.delivery{
+  background:var(--laranja);
+  color:var(--creme-claro);
+}
 
 .btn.soon{
   background:transparent;
-  color:rgba(251,245,236,.5);
-  box-shadow:inset 0 0 0 1.5px rgba(251,245,236,.22);
+  color:rgba(247,241,229,.5);
+  box-shadow:inset 0 0 0 1.5px rgba(247,241,229,.22);
   cursor:not-allowed;
   pointer-events:none;
 }
 .btn.soon .arrow{opacity:.4}
 
-/* ---------- Fechamento ---------- */
+/* ---------- Fechamento / Clube Marietta ---------- */
 .closing{
+  position:relative;
   margin:44px 0 0;
   background:var(--creme-claro);
-  border:1px solid rgba(167,64,30,.22);
+  border:1px solid var(--areia);
   border-radius:var(--radius);
-  padding:30px 22px 28px;
+  padding:32px 22px 30px;
   text-align:center;
   box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.closing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.5;
+  background:
+    radial-gradient(400px 200px at 0% 0%, rgba(107,143,106,.16), transparent 70%),
+    radial-gradient(400px 200px at 100% 100%, rgba(224,106,16,.1), transparent 70%);
+}
+.closing > *{position:relative}
+.closing .club-kicker{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--laranja);
+  margin:0 0 10px;
 }
 .closing h2{
   font-family:var(--display);
-  font-size:clamp(24px,6vw,32px);
-  line-height:1.14;
+  font-size:clamp(25px,6.2vw,34px);
+  line-height:1.12;
   margin:0 0 12px;
-  color:var(--terracota);
-  font-weight:700;
+  color:var(--floresta);
+  font-weight:600;
+  letter-spacing:-.01em;
 }
 .closing p{
   margin:0 auto 18px;
-  max-width:50ch;
+  max-width:48ch;
   font-size:15px;
-  color:rgba(22,22,20,.78);
+  color:rgba(20,29,22,.78);
 }
 .closing .app-note{
-  font-size:13px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:.12em;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--oliva);
+  color:var(--verde);
   margin-bottom:14px;
 }
 .app-stack{
@@ -293,23 +368,21 @@ a{color:inherit}
   margin:0 auto;
 }
 .app-stack .btn{
-  background:var(--carvao);
+  background:var(--verde);
   color:var(--creme-claro);
 }
-.app-stack .btn.soon{
-  background:transparent;
-  color:rgba(22,22,20,.42);
-  box-shadow:inset 0 0 0 1.5px rgba(22,22,20,.2);
-}
+.app-stack .btn:hover{background:var(--floresta)}
+.app-stack .btn svg{width:18px;height:18px;flex:none;fill:currentColor}
+.app-stack .btn .label{display:flex;align-items:center;gap:10px}
 
 .footer{
   text-align:center;
-  padding-block:30px 40px;
+  padding-block:32px 44px;
   font-size:11px;
   letter-spacing:.24em;
   text-transform:uppercase;
   font-weight:600;
-  color:rgba(22,22,20,.45);
+  color:rgba(20,29,22,.5);
 }
 
 /* ---------- Desktop ---------- */
@@ -324,6 +397,7 @@ a{color:inherit}
   .unit.flip .unit-body{grid-column:1}
   .unit-photo{aspect-ratio:auto}
   .unit-photo img{min-height:100%}
+  .unit.flip::after{right:auto;left:-26px;transform:scaleX(-1)}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -334,6 +408,35 @@ a{color:inherit}
 </head>
 
 <body>
+
+<!-- Símbolo do ramo de folhas, reutilizado nos três cantos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="leaf" d="M0 0C9-15 31-15 44 0 31 15 9 15 0 0Z"/>
+    <symbol id="sprig" viewBox="0 0 230 310">
+      <g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 295C60 225 90 155 205 20" fill="none" stroke-width="3.2"/>
+        <g stroke-width="1" stroke="rgba(247,241,229,.45)">
+          <use href="#leaf" transform="translate(43 248) rotate(-150) scale(1.05)"/>
+          <use href="#leaf" transform="translate(48 244) rotate(-20) scale(.95)"/>
+          <use href="#leaf" transform="translate(69 202) rotate(-160) scale(1.1)"/>
+          <use href="#leaf" transform="translate(73 198) rotate(-25) scale(1)"/>
+          <use href="#leaf" transform="translate(100 151) rotate(-165) scale(1.05)"/>
+          <use href="#leaf" transform="translate(104 147) rotate(-30) scale(1)"/>
+          <use href="#leaf" transform="translate(142 92) rotate(-165) scale(.95)"/>
+          <use href="#leaf" transform="translate(146 88) rotate(-35) scale(.9)"/>
+          <use href="#leaf" transform="translate(183 40) rotate(-165) scale(.8)"/>
+          <use href="#leaf" transform="translate(186 36) rotate(-40) scale(.75)"/>
+          <use href="#leaf" transform="translate(205 20) rotate(-70) scale(.6)"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<svg class="deco deco-a" viewBox="0 0 230 310" aria-hidden="true" focusable="false"><use href="#sprig"/></svg>
+<svg class="deco deco-b" viewBox="0 0 230 310" aria-hidden="true" focusable="false"><use href="#sprig"/></svg>
+<svg class="deco deco-c" viewBox="0 0 230 310" aria-hidden="true" focusable="false"><use href="#sprig"/></svg>
 
 <div class="wrap">
 
@@ -348,7 +451,12 @@ a{color:inherit}
     <p class="lead">Encontre uma unidade perto de você e aproveite uma experiência completa.</p>
     <p class="body">Na Marietta, cada detalhe é pensado para deixar seu dia mais leve: refeições saborosas, ingredientes selecionados e aquele atendimento que faz você se sentir em casa.</p>
 
-    <div class="units-cue"><span>Conheça nossas unidades</span></div>
+    <div class="units-cue">
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C6 10 12 5 21 4c-1 9-6 15-16 16"/><path d="M6 18 18 6"/></svg>
+        Conheça nossas unidades
+      </span>
+    </div>
   </section>
 
   <main>
@@ -407,11 +515,11 @@ a{color:inherit}
     </article>
 
     <!-- ================= FASTS ================= -->
-    <div class="cat olive">
+    <div class="cat wood">
       <h2>Fasts</h2>
     </div>
 
-    <article class="unit olive flip">
+    <article class="unit wood flip">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/iguatemi.webp') }}" alt="Balcão da unidade Marietta Iguatemi" loading="lazy" decoding="async">
       </figure>
@@ -427,7 +535,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="unit olive">
+    <article class="unit wood">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/plaza-norte.webp') }}" alt="Balcão da unidade Marietta Plaza Norte" loading="lazy" decoding="async">
       </figure>
@@ -443,7 +551,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="unit olive flip">
+    <article class="unit wood flip">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/brasilia-shopping.webp') }}" alt="Balcão da unidade Marietta Brasília Shopping" loading="lazy" decoding="async">
       </figure>
@@ -454,12 +562,12 @@ a{color:inherit}
         <div class="btn-stack">
           <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn ghost" href="https://maps.app.goo.gl/fpvUnk5Vne4UnHxr9" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://www.ifood.com.br/delivery/brasilia-df/marietta---brasilia-shopping-asa-norte/958d3656-5fb6-49e6-ac2e-b400e4b728de" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="ifood">Peça no iFood <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn delivery" href="https://www.ifood.com.br/delivery/brasilia-df/marietta---brasilia-shopping-asa-norte/958d3656-5fb6-49e6-ac2e-b400e4b728de" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="ifood">Peça no iFood <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
 
-    <article class="unit olive">
+    <article class="unit wood">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/conjunto-nacional.webp') }}" alt="Balcão da unidade Marietta Conjunto Nacional" loading="lazy" decoding="async">
       </figure>
@@ -475,7 +583,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="unit olive flip">
+    <article class="unit wood flip">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/lago-sul.webp') }}" alt="Balcão da unidade Marietta Lago Sul" loading="lazy" decoding="async">
       </figure>
@@ -491,7 +599,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="unit olive">
+    <article class="unit wood">
       <figure class="unit-photo">
         <img src="{{ url_for('static', filename='img/opt/taguatinga.webp') }}" alt="Balcão da unidade Marietta Taguatinga" loading="lazy" decoding="async">
       </figure>
@@ -507,20 +615,28 @@ a{color:inherit}
       </div>
     </article>
 
+    <!-- ================= CLUBE MARIETTA ================= -->
     <section class="closing">
+      <p class="club-kicker">Clube Marietta</p>
       <h2>Muito mais que uma refeição. Uma experiência Marietta.</h2>
       <p>Do primeiro pedido ao próximo encontro, estamos perto de você para transformar cada momento em uma experiência ainda mais saborosa.</p>
       <p class="app-note">Baixe o app e aproveite benefícios exclusivos</p>
       <div class="app-stack">
-        <span class="btn soon" role="link" aria-disabled="true">Baixar para Android <span class="arrow" aria-hidden="true">em breve</span></span>
-        <span class="btn soon" role="link" aria-disabled="true">Baixar para iOS <span class="arrow" aria-hidden="true">em breve</span></span>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=mariettamarvin.fidelidade" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_android">
+          <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.4 13.3 12l-9.7 9.6c-.4-.2-.6-.6-.6-1.1V3.5c0-.5.2-.9.6-1.1Zm1.6-.4 11.1 6.5-2.5 2.5L4.5 1.9c.2-.1.5 0 .7.1Zm11.1 6.5 3.4 2c.9.5.9 1.8 0 2.3l-3.4 2L14.8 12l1.5-3.5ZM5.2 22.1c-.2.1-.5.2-.7.1L13.8 13l2.5 2.5-11.1 6.6Z"/></svg> Baixar para Android</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn" href="https://apps.apple.com/br/app/marietta-marvin/id6797896604" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_ios">
+          <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3-.1 1.7-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-4.2ZM13.9 5.5c.7-.8 1.2-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.6 3-1.4Z"/></svg> Baixar para iOS</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
 
   </main>
 
   <footer class="footer">
-    Marietta · Desde 1982 · Cafés &amp; Fasts · Brasília — DF
+    Marietta · Comida de verdade desde 1982 · Brasília — DF
   </footer>
 
 </div>
