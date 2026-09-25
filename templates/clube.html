@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clube Marietta — Baixe o app e aproveite benefícios exclusivos</title>
+<meta name="description" content="Muito mais que uma refeição. Uma experiência Marietta. Baixe o app do Clube Marietta para Android ou iOS e aproveite benefícios exclusivos.">
+
+<meta property="og:title" content="Clube Marietta — Baixe o app">
+<meta property="og:description" content="Baixe o app do Clube Marietta e aproveite benefícios exclusivos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#415C49">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="{{ url_for('static', filename='tracking.js') }}" defer></script>
+
+<style>
+:root{
+  /* Paleta Marietta */
+  --verde:#415C49;
+  --floresta:#2A4132;
+  --folha:#6B8F6A;
+  --creme:#F7F1E5;
+  --creme-claro:#FDFCF8;
+  --areia:#E7D4BB;
+  --laranja:#E06A10;
+  --tinta:#141D16;
+  --display:"Fraunces", "Noe Display", Georgia, "Times New Roman", serif;
+  --sans:"Hanken Grotesk", "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius:20px;
+  --shadow:0 22px 44px -26px rgba(20,29,22,.5);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  font-family:var(--sans);
+  color:var(--tinta);
+  background-color:var(--creme);
+  background-image:
+    radial-gradient(900px 480px at 50% -200px, rgba(65,92,73,.16), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23415C49' stroke-width='1.1' stroke-linecap='round' opacity='.11'%3E%3Cpath d='M30 120c8-26 24-42 52-50'/%3E%3Cpath d='M48 92c-10-3-17-11-18-22 10 2 17 9 18 22Z'/%3E%3Cpath d='M64 78c-4-10-1-20 7-27 4 10 1 20-7 27Z'/%3E%3Cpath d='M112 40c26 8 42 24 50 52'/%3E%3Cpath d='M140 58c3-10 11-17 22-18-2 10-9 17-22 18Z'/%3E%3Cpath d='M154 74c10-4 20-1 27 7-10 4-20 1-27-7Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment:fixed, fixed;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- Ramos de folhas (grafismo de fundo) ---------- */
+.deco{
+  position:fixed;
+  z-index:0;
+  pointer-events:none;
+  color:var(--folha);
+  opacity:.34;
+  width:clamp(150px,34vw,340px);
+  height:auto;
+}
+.deco-a{top:-30px;left:-60px;transform:rotate(-8deg)}
+.deco-b{bottom:-70px;right:-80px;transform:scaleX(-1) rotate(12deg)}
+@media (min-width:900px){
+  .deco{opacity:.4}
+  .deco-a{left:3vw}
+  .deco-b{right:4vw}
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  width:100%;
+  max-width:620px;
+  margin:0 auto;
+  padding:32px 18px 8px;
+}
+
+/* ---------- Topo ---------- */
+.topbar{
+  text-align:center;
+  margin-bottom:26px;
+}
+.brand{
+  display:inline-block;
+  text-decoration:none;
+}
+.brand-logo{
+  width:clamp(180px,50vw,250px);
+  height:auto;
+}
+
+/* ---------- Card do Clube ---------- */
+.club{
+  position:relative;
+  background:var(--creme-claro);
+  border:1px solid var(--areia);
+  border-radius:var(--radius);
+  padding:36px 24px 34px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.club::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.5;
+  background:
+    radial-gradient(400px 200px at 0% 0%, rgba(107,143,106,.16), transparent 70%),
+    radial-gradient(400px 200px at 100% 100%, rgba(224,106,16,.1), transparent 70%);
+}
+.club > *{position:relative}
+.club .club-kicker{
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--laranja);
+  margin:0 0 10px;
+}
+.club h1{
+  font-family:var(--display);
+  font-size:clamp(27px,6.6vw,38px);
+  line-height:1.12;
+  margin:0 0 12px;
+  color:var(--floresta);
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+.club p{
+  margin:0 auto 20px;
+  max-width:48ch;
+  font-size:15px;
+  color:rgba(20,29,22,.78);
+}
+.club .app-note{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--verde);
+  margin-bottom:16px;
+}
+
+.app-stack{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-width:340px;
+  margin:0 auto;
+}
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  width:100%;
+  padding:14px 18px;
+  border-radius:999px;
+  border:0;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  background:var(--verde);
+  color:var(--creme-claro);
+  transition:transform .16s ease, background .16s ease;
+}
+.btn .arrow{font-size:15px;line-height:1;opacity:.75}
+.btn .label{display:flex;align-items:center;gap:10px}
+.btn svg{width:18px;height:18px;flex:none;fill:currentColor}
+.btn:hover{transform:translateY(-2px);background:var(--floresta)}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+
+.footer{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding-block:26px 32px;
+  font-size:11px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:rgba(20,29,22,.5);
+}
+
+@media (min-width:620px){
+  .club{padding:44px 40px 40px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Símbolo do ramo de folhas, reutilizado nos cantos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="leaf" d="M0 0C9-15 31-15 44 0 31 15 9 15 0 0Z"/>
+    <symbol id="sprig" viewBox="0 0 230 310">
+      <g fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 295C60 225 90 155 205 20" fill="none" stroke-width="3.2"/>
+        <g stroke-width="1" stroke="rgba(247,241,229,.45)">
+          <use href="#leaf" transform="translate(43 248) rotate(-150) scale(1.05)"/>
+          <use href="#leaf" transform="translate(48 244) rotate(-20) scale(.95)"/>
+          <use href="#leaf" transform="translate(69 202) rotate(-160) scale(1.1)"/>
+          <use href="#leaf" transform="translate(73 198) rotate(-25) scale(1)"/>
+          <use href="#leaf" transform="translate(100 151) rotate(-165) scale(1.05)"/>
+          <use href="#leaf" transform="translate(104 147) rotate(-30) scale(1)"/>
+          <use href="#leaf" transform="translate(142 92) rotate(-165) scale(.95)"/>
+          <use href="#leaf" transform="translate(146 88) rotate(-35) scale(.9)"/>
+          <use href="#leaf" transform="translate(183 40) rotate(-165) scale(.8)"/>
+          <use href="#leaf" transform="translate(186 36) rotate(-40) scale(.75)"/>
+          <use href="#leaf" transform="translate(205 20) rotate(-70) scale(.6)"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<svg class="deco deco-a" viewBox="0 0 230 310" aria-hidden="true" focusable="false"><use href="#sprig"/></svg>
+<svg class="deco deco-b" viewBox="0 0 230 310" aria-hidden="true" focusable="false"><use href="#sprig"/></svg>
+
+<div class="wrap">
+
+  <header class="topbar">
+    <a class="brand" href="https://marietta.com.br/" target="_blank" rel="noopener" aria-label="Marietta — site oficial">
+      <img class="brand-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Marietta — desde 1982" fetchpriority="high" decoding="async">
+    </a>
+  </header>
+
+  <main class="club">
+    <p class="club-kicker">Clube Marietta</p>
+    <h1>Muito mais que uma refeição. Uma experiência Marietta.</h1>
+    <p>Do primeiro pedido ao próximo encontro, estamos perto de você para transformar cada momento em uma experiência ainda mais saborosa.</p>
+    <p class="app-note">Baixe o app e aproveite benefícios exclusivos</p>
+    <div class="app-stack">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=mariettamarvin.fidelidade" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_android">
+        <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.4 13.3 12l-9.7 9.6c-.4-.2-.6-.6-.6-1.1V3.5c0-.5.2-.9.6-1.1Zm1.6-.4 11.1 6.5-2.5 2.5L4.5 1.9c.2-.1.5 0 .7.1Zm11.1 6.5 3.4 2c.9.5.9 1.8 0 2.3l-3.4 2L14.8 12l1.5-3.5ZM5.2 22.1c-.2.1-.5.2-.7.1L13.8 13l2.5 2.5-11.1 6.6Z"/></svg> Baixar para Android</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="btn" href="https://apps.apple.com/br/app/marietta-marvin/id6797896604" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_ios">
+        <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3-.1 1.7-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-4.2ZM13.9 5.5c.7-.8 1.2-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.6 3-1.4Z"/></svg> Baixar para iOS</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </main>
+
+</div>
+
+<footer class="footer">
+  Marietta · Comida de verdade desde 1982 · Brasília — DF
+</footer>
+
+<script>
+document.addEventListener("click", function (e) {
+  var el = e.target.closest("a.btn[data-action]");
+  if (!el) return;
+  if (typeof trackCTA === "function") {
+    trackCTA(el.dataset.action, el.dataset.unit);
+  }
+});
+</script>
+
+</body>
+</html>
