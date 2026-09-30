@@ -253,6 +253,8 @@ a{color:inherit}
   height:100%;
   object-fit:cover;
 }
+/* fotos verticais: mantém a fachada no enquadramento */
+.unit-photo.focus-bottom img{object-position:center 68%}
 
 .unit-body{
   position:relative;
@@ -277,6 +279,9 @@ a{color:inherit}
   letter-spacing:-.01em;
   color:var(--creme-claro);
 }
+/* nomes longos não podem esticar o card */
+.unit-name.long{font-size:clamp(21px,5.2vw,25px);line-height:1.12}
+.unit-name-sub{white-space:nowrap}
 .unit-place{
   margin:0 0 16px;
   font-size:13px;
@@ -417,8 +422,9 @@ a{color:inherit}
   .unit .unit-body{grid-column:2;grid-row:1;padding:24px 22px}
   .unit.flip .unit-photo{grid-column:2}
   .unit.flip .unit-body{grid-column:1}
+  /* a foto acompanha a altura do card; nunca a define */
   .unit-photo{aspect-ratio:auto}
-  .unit-photo img{min-height:100%}
+  .unit-photo img{position:absolute;inset:0}
   .unit.flip::after{right:auto;left:-26px;transform:scaleX(-1)}
   .unit.ifood .unit-body{display:flex;flex-direction:column;justify-content:center}
 }
@@ -476,7 +482,7 @@ a{color:inherit}
 
     <div class="site-cta">
       <p class="site-note">Saiba mais:</p>
-      <a class="btn site" href="https://marietta.com.br/" target="_blank" rel="noopener" data-unit="Institucional" data-action="site">Visite nosso site <span class="arrow" aria-hidden="true">→</span></a>
+      <a id="site-oficial" class="btn site" href="https://marietta.com.br/" target="_blank" rel="noopener" data-unit="Institucional" data-action="site">Visite nosso site <span class="arrow" aria-hidden="true">→</span></a>
     </div>
 
     <div class="units-cue">
@@ -503,8 +509,8 @@ a{color:inherit}
         <h3 class="unit-name">Terraço</h3>
         <p class="unit-place">Cafés</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Terraço" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/hGk3qbQZkz4goKNM7" target="_blank" rel="noopener" data-unit="Terraço" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-terraco" class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Terraço" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-terraco" class="btn ghost" href="https://maps.app.goo.gl/hGk3qbQZkz4goKNM7" target="_blank" rel="noopener" data-unit="Terraço" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -518,8 +524,8 @@ a{color:inherit}
         <h3 class="unit-name">Park Shopping</h3>
         <p class="unit-place">Cafés</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/hv7ejPd5RbYhppbN6" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-park-shopping" class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-park-shopping" class="btn ghost" href="https://maps.app.goo.gl/hv7ejPd5RbYhppbN6" target="_blank" rel="noopener" data-unit="Park Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -533,8 +539,23 @@ a{color:inherit}
         <h3 class="unit-name">Casa Park</h3>
         <p class="unit-place">Cafés</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Casa Park" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/f35QTqLSKhQSBMTo9" target="_blank" rel="noopener" data-unit="Casa Park" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-casa-park" class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Casa Park" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-casa-park" class="btn ghost" href="https://maps.app.goo.gl/f35QTqLSKhQSBMTo9" target="_blank" rel="noopener" data-unit="Casa Park" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="unit flip">
+      <figure class="unit-photo focus-bottom">
+        <img src="{{ url_for('static', filename='img/opt/409-jardim.webp') }}" alt="Fachada da unidade Marietta &amp; Marvin Jardim (409 sul)" loading="lazy" decoding="async">
+      </figure>
+      <div class="unit-body">
+        <p class="unit-kicker">Unidade</p>
+        <h3 class="unit-name long">Marietta &amp; Marvin Jardim <span class="unit-name-sub">(409 sul)</span></h3>
+        <p class="unit-place">Cafés</p>
+        <div class="btn-stack">
+          <a id="cardapio-409-jardim" class="btn" href="https://drive.google.com/drive/folders/1_5XpvNL1_92a-n10RWk5eNwKir9WtVha?usp=sharing" target="_blank" rel="noopener" data-unit="Marietta &amp; Marvin Jardim (409 sul)" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-409-jardim" class="btn ghost" href="https://maps.app.goo.gl/zn87rYbUBkvcCPgP7" target="_blank" rel="noopener" data-unit="Marietta &amp; Marvin Jardim (409 sul)" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -553,8 +574,8 @@ a{color:inherit}
         <h3 class="unit-name">Iguatemi</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/BaqoEsfTtR6oHpRc7" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-iguatemi" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-iguatemi" class="btn ghost" href="https://maps.app.goo.gl/BaqoEsfTtR6oHpRc7" target="_blank" rel="noopener" data-unit="Iguatemi" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -568,8 +589,8 @@ a{color:inherit}
         <h3 class="unit-name">Plaza Norte</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/MsJVeXCg7ENVf8vY7" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-plaza-norte" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-plaza-norte" class="btn ghost" href="https://maps.app.goo.gl/MsJVeXCg7ENVf8vY7" target="_blank" rel="noopener" data-unit="Plaza Norte" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -583,8 +604,8 @@ a{color:inherit}
         <h3 class="unit-name">Brasília Shopping</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/fpvUnk5Vne4UnHxr9" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-brasilia-shopping" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-brasilia-shopping" class="btn ghost" href="https://maps.app.goo.gl/fpvUnk5Vne4UnHxr9" target="_blank" rel="noopener" data-unit="Brasília Shopping" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -598,8 +619,8 @@ a{color:inherit}
         <h3 class="unit-name">Conjunto Nacional</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/r75VvnYbw4Fc9fVC7" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-conjunto-nacional" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-conjunto-nacional" class="btn ghost" href="https://maps.app.goo.gl/r75VvnYbw4Fc9fVC7" target="_blank" rel="noopener" data-unit="Conjunto Nacional" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -613,8 +634,8 @@ a{color:inherit}
         <h3 class="unit-name">Lago Sul</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/MdURafgsZWRXRiC5A" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-lago-sul" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-lago-sul" class="btn ghost" href="https://maps.app.goo.gl/MdURafgsZWRXRiC5A" target="_blank" rel="noopener" data-unit="Lago Sul" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -628,8 +649,8 @@ a{color:inherit}
         <h3 class="unit-name">Taguatinga</h3>
         <p class="unit-place">Sanduíches e Saladas</p>
         <div class="btn-stack">
-          <a class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="https://maps.app.goo.gl/LePx7N7fMfrxRxQ9A" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="cardapio-taguatinga" class="btn" href="https://drive.google.com/drive/folders/1CA0WnVYEtZxnSV4tZJKZYvMaoO9HOo5O?usp=sharing" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="cardapio">Cardápio <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="localizacao-taguatinga" class="btn ghost" href="https://maps.app.goo.gl/LePx7N7fMfrxRxQ9A" target="_blank" rel="noopener" data-unit="Taguatinga" data-action="localizacao">Localização <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -648,7 +669,7 @@ a{color:inherit}
         <h3 class="unit-name">Marietta no iFood</h3>
         <p class="unit-place">Seu pedido Marietta onde você estiver</p>
         <div class="btn-stack">
-          <a class="btn delivery" href="https://ifoodbr.onelink.me/F4X4/Marietta" target="_blank" rel="noopener" data-unit="iFood" data-action="ifood">Peça no iFood <span class="arrow" aria-hidden="true">→</span></a>
+          <a id="ifood-delivery" class="btn delivery" href="https://ifoodbr.onelink.me/F4X4/Marietta" target="_blank" rel="noopener" data-unit="iFood" data-action="ifood">Peça no iFood <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </article>
@@ -660,11 +681,11 @@ a{color:inherit}
       <p>Do primeiro pedido ao próximo encontro, estamos perto de você para transformar cada momento em uma experiência ainda mais saborosa.</p>
       <p class="app-note">Baixe o app e aproveite benefícios exclusivos</p>
       <div class="app-stack">
-        <a class="btn" href="https://play.google.com/store/apps/details?id=mariettamarvin.fidelidade" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_android">
+        <a id="app-android" class="btn" href="https://play.google.com/store/apps/details?id=mariettamarvin.fidelidade" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_android">
           <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.4 13.3 12l-9.7 9.6c-.4-.2-.6-.6-.6-1.1V3.5c0-.5.2-.9.6-1.1Zm1.6-.4 11.1 6.5-2.5 2.5L4.5 1.9c.2-.1.5 0 .7.1Zm11.1 6.5 3.4 2c.9.5.9 1.8 0 2.3l-3.4 2L14.8 12l1.5-3.5ZM5.2 22.1c-.2.1-.5.2-.7.1L13.8 13l2.5 2.5-11.1 6.6Z"/></svg> Baixar para Android</span>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <a class="btn" href="https://apps.apple.com/br/app/marietta-marvin/id6797896604" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_ios">
+        <a id="app-ios" class="btn" href="https://apps.apple.com/br/app/marietta-marvin/id6797896604" target="_blank" rel="noopener" data-unit="Clube Marietta" data-action="app_ios">
           <span class="label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.7c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3-.1 1.7-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-4.2ZM13.9 5.5c.7-.8 1.2-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.6 3-1.4Z"/></svg> Baixar para iOS</span>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
