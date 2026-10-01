@@ -713,15 +713,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </div>
 
-<script>
-document.addEventListener("click", function (e) {
-  var el = e.target.closest("a.btn[data-action]");
-  if (!el) return;
-  if (typeof trackCTA === "function") {
-    trackCTA(el.dataset.action, el.dataset.unit);
-  }
-});
-</script>
-
 </body>
 </html>
