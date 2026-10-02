@@ -17,34 +17,38 @@
     window.dataLayer.push(Object.assign({ event: event }, getUtms(), payload || {}));
   }
 
-  // Texto visível do botão, sem a seta decorativa
+  // Texto visivel do botao, sem a seta nem os icones decorativos
   function labelOf(el) {
-    if (!el) return null;
     var clone = el.cloneNode(true);
     Array.prototype.forEach.call(clone.querySelectorAll("[aria-hidden='true']"), function (node) {
       node.parentNode.removeChild(node);
     });
-    return (clone.textContent || "").replace(/\s+/g, " ").trim() || null;
+    return (clone.textContent || "").replace(/\s+/g, " ").trim();
   }
 
-  // As variáveis nativas Click ID / Click URL / Click Classes do GTM só existem
-  // nos eventos gtm.click / gtm.linkClick. Como este é um evento customizado,
-  // os mesmos dados vão no push como cta_id, cta_url, cta_classes e cta_text.
-  window.trackCTA = function (action, unit, el) {
+  // As chaves gtm.element* fazem as variaveis nativas de clique do GTM
+  // (Click ID, Click Text, Click URL...) resolverem neste evento personalizado.
+  window.trackCTA = function (el) {
+    if (!el) return;
     push("click_cta", {
-      cta_action: action || "cta",
-      cta_unit: unit || null,
-      cta_id: (el && el.id) || null,
-      cta_url: (el && el.href) || null,
+      "gtm.element": el,
+      "gtm.elementId": el.id || "",
+      "gtm.elementClasses": el.className || "",
+      "gtm.elementTarget": el.target || "",
+      "gtm.elementUrl": el.href || "",
+      "gtm.elementText": labelOf(el),
+      cta_id: el.id || "",
+      cta_action: el.dataset.action || "cta",
+      cta_unit: el.dataset.unit || "",
       cta_text: labelOf(el),
-      cta_classes: (el && el.className) || null
+      cta_url: el.href || ""
     });
   };
 
   document.addEventListener("click", function (e) {
-    var el = e.target.closest("a[data-action]");
+    var el = e.target.closest("a.btn[data-action]");
     if (!el) return;
-    window.trackCTA(el.dataset.action, el.dataset.unit, el);
+    window.trackCTA(el);
   });
 
   push("page_view", { page_path: window.location.pathname });
